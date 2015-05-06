@@ -1,2 +1,2 @@
 # ps_scripts
-Usefull scripts
+Usefull scripts for Azure management and operations
