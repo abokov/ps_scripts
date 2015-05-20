@@ -1,0 +1,1 @@
+Get-AzureVM | Where-Object {$_.InstanceSize -ne 'Basic_A0'} | Set-AzureVMSize "Basic_A0" | Update-AzureVM
