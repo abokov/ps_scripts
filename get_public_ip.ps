@@ -1,0 +1,11 @@
+$dnsServer = Get-DnsClientServerAddress -AddressFamily IPv4 | Where-Object {$_.ServerAddresses -ne $null} | Select -First 1
+$server = $dnsServer.ServerAddresses;
+$header = @{'x-ms-version' = '2012-11-30'};
+$url = 'http://' + $server + '/machine?comp=goalstate';
+$result = Invoke-WebRequest -Uri $url -Header $header -UseBasicParsing
+$goalState = [xml]$result.Content
+$result = Invoke-WebRequest -Uri $goalState.GoalState.Container.RoleInstanceList.RoleInstance.Configuration.SharedConfig -Header $header -UseBasicParsing
+$sharedConfig = [xml]$result.Content
+$sharedConfig.SharedConfig.Instances.Instance.InputEndpoints.Endpoint | Select name, loadBalancedPublicAddress
+
+    
