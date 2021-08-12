@@ -1,2 +1,4 @@
 # ps_scripts
-Usefull scripts for Azure management and operations
+Usefull PowerShell scripts for demo purposes
+
+
